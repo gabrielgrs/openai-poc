@@ -10,12 +10,18 @@ const openAI = new OpenAIApi(
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
-    const { message } = req.query
+    const { message, maxTokens = 100 } = req.query
 
     const response = await openAI.createCompletion({
       model: 'text-davinci-003',
       prompt: message,
+      n: 1,
+      stop: 'none',
+      temperature: 0.5,
+      max_tokens: Number(maxTokens),
     })
+
+    console.log(response.data.choices[0])
 
     return res.status(200).send({ choices: response.data.choices })
   } catch (error) {
