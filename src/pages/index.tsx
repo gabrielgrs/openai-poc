@@ -6,7 +6,7 @@ function Home() {
 
   const onRequest = async (message: string) => {
     try {
-      const url = `http://${process.env.BASE_URL}/api/openai?message=${message}`
+      const url = `https://${process.env.BASE_URL}/api/openai?message=${message}`
       const response = await fetch(url)
       const json = await response.json()
 
