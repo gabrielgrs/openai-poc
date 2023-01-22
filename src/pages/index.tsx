@@ -6,8 +6,7 @@ function Home() {
 
   const onRequest = async (message: string) => {
     try {
-      const baseURL = process.env.VERCEL_URL || process.env.BASE_URL
-      const url = `http://${baseURL}/api/openai?message=${message}`
+      const url = `http://${process.env.BASE_URL}/api/openai?message=${message}`
       const response = await fetch(url)
       const json = await response.json()
 
